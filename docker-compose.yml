@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  my_local_neo4j:
+    image: neo4j:4.0.0
+    restart: always
+    volumes:
+       - ./data/localdb/neo4jdata:/data
+       - ./neo4j/plugins:/plugins
+       - ./data/localdb/import:/import
+    ports:
+      - '7474:7474'
+      - '7687:7687'
+    environment:
+      # - NEO4J_AUTH=none
+      - NEO4J_AUTH=neo4j/neo123
+      - NEO4J_dbms_shell_enabled=true
